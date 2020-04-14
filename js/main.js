@@ -1,15 +1,33 @@
-var calculateMonthlyPayment = function (principal, years, rate) {
-    if (rate) {
-        var monthlyRate = rate / 100 / 12;
+// monthly installment of a loan with constant amortization
+'use strict';
+
+const defaultRate = 0;
+
+const calculateMonthlyPayment = function (principal, years, annualRate) {
+    if (! principal) { throw new Error("Initial capital must be provided")}
+    if (! years) { throw new Error("Term of the loan must be provided (years)")}
+    if (! annualRate || annualRate < 0) {
+        annualRate = defaultRate;
+        console.log("No rate provided or negative one: zero rate will be taken in account")
     }
-    var monthlyPayment = principal * monthlyRate / (1 - (Math.pow(1 / (1 + monthlyRate), years * 12)));
+
+    const duration = 12 * years;
+    const monthlyRate = annualRate / 100 / 12;
+    let coeff;
+    if (annualRate > 0) {
+        coeff = monthlyRate / (1 - Math.pow(1 / (1 + monthlyRate), duration));
+    } else {
+        coeff = 1 / duration;
+    }
+    const monthlyPayment = principal * coeff;
+    
     return monthlyPayment;
 };
 
 document.getElementById('calcBtn').addEventListener('click', function () {
-    var principal = document.getElementById("principal").value;
-    var years = document.getElementById("years").value;
-    var rate = document.getElementById("rate").value;
-    var monthlyPayment = calculateMonthlyPayment(principal, years, rate);
-    document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toFixed(2);
+    const principal = document.getElementById('principal').value;
+    const years = document.getElementById('years').value;
+    const rate = document.getElementById('rate').value;
+    const monthlyPayment = calculateMonthlyPayment(principal, years, rate);
+    document.getElementById('monthlyPayment').innerHTML = monthlyPayment.toFixed(2);
 });
