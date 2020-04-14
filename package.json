@@ -1,0 +1,35 @@
+{
+  "name": "ccoenraets-fork-es6-tutorial",
+  "version": "1.0.0",
+  "description": "Start the tutorial [here](http://ccoenraets.github.io/es6-tutorial).",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf ./build",
+    "prebuild": "npm run clean && mkdirp ./build",
+    "babel": "babel --presets @babel/env js/main.js -o ./build/main.bundle.js",
+    "build": "npm run babel",
+    "start": "concurrently \"npm run build\" \"wait-on ./build/main.bundle.js && open-cli ./index.html\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atao60/es6-tutorial.git"
+  },
+  "keywords": [],
+  "author": "atao60",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atao60/es6-tutorial/issues"
+  },
+  "homepage": "https://github.com/atao60/es6-tutorial#readme",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "concurrently": "^5.1.0",
+    "mkdirp": "^1.0.4",
+    "open-cli": "^6.0.1",
+    "rimraf": "^3.0.2",
+    "wait-on": "^4.0.2"
+  }
+}
