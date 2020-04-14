@@ -1,7 +1,6 @@
-const url = 'rates.json';
+import { findAll } from './rate-service-mock';
     
-fetch(url)
-    .then(response => response.json())
+findAll()
     .then(rates => {
         const html = rates.reduce((table, rate) => {
             return table + `<tr><td>${rate.name}</td><td>${rate.years}</td><td>${rate.rate}%</td></tr>\n`;
