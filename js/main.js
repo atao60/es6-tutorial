@@ -21,13 +21,14 @@ const calculateMonthlyPayment = function (principal, years, annualRate) {
     }
     const monthlyPayment = principal * coeff;
     
-    return monthlyPayment;
+    return { principal, years, annualRate, monthlyPayment, monthlyRate };
 };
 
 document.getElementById('calcBtn').addEventListener('click', function () {
     const principal = document.getElementById('principal').value;
     const years = document.getElementById('years').value;
     const rate = document.getElementById('rate').value;
-    const monthlyPayment = calculateMonthlyPayment(principal, years, rate);
+    const { monthlyPayment, monthlyRate } = calculateMonthlyPayment(principal, years, rate);
     document.getElementById('monthlyPayment').innerHTML = monthlyPayment.toFixed(2);
+    document.getElementById('monthlyRate').innerHTML = (monthlyRate * 100).toFixed(2);
 });

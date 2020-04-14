@@ -121,6 +121,10 @@ label {
     display: flex;
 }
 
+.pourcentage::before {
+    content:"%";
+}
+
 .currency::before {
     content:"$";
 }
