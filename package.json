@@ -6,8 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf ./build",
     "prebuild": "npm run clean && mkdirp ./build",
-    "babel": "babel --presets @babel/env js/main.js -o ./build/main.bundle.js",
-    "build": "npm run babel",
+    "build": "webpack",
     "start": "concurrently \"npm run build\" \"wait-on ./build/main.bundle.js && open-cli ./index.html\""
   },
   "repository": {
@@ -26,10 +25,13 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
     "concurrently": "^5.1.0",
     "mkdirp": "^1.0.4",
     "open-cli": "^6.0.1",
     "rimraf": "^3.0.2",
-    "wait-on": "^4.0.2"
+    "wait-on": "^4.0.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }
