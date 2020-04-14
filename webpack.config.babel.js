@@ -2,10 +2,13 @@ import { resolve } from 'path';
 
 export default {
     mode: 'development',
-    entry: './js/main.js',
+    entry: {
+        app: './js/main.js',
+        ratefinder: './js/ratefinder.js'
+    },
     output: {
         path: resolve(__dirname, 'build'),
-        filename: 'main.bundle.js'
+        filename: '[name].bundle.js'
     },
     module: {
         rules: [
