@@ -32,6 +32,7 @@ module.exports = api => {
     ];
 
     const plugins = [
+        '@babel/proposal-class-properties',
         // proposal-object-rest-spread no more required, supported out of the box in @babel/preset-env, see:
         //     Docs: @babel/proposal-object-rest-spread no longer needs to be specified explicitly #521
         //     kaykayehnn opened this issue on 12 Apr 2019 · 1 comment · Fixed by #539
